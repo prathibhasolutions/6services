@@ -157,7 +157,7 @@ h6 {
 }
 
 .header .logo img {
-  max-height: 32px;
+  max-height: 60px;
   margin-right: 8px;
 }
 
@@ -687,7 +687,14 @@ section,
   text-align: center;
   position: relative;
   min-height: 75vh;
-  padding-top: 60px;
+  padding-top: 90px;
+
+ 
+}
+@media (max-width: 768px) {
+    #hero {
+        padding-top: 0px; /* Adjust this value to reduce the gap */
+    }
 }
 
 .hero h2 {
@@ -761,6 +768,8 @@ section,
     font-size: 28px;
   }
 }
+
+
 
 .hero .hero-waves {
   display: block;
