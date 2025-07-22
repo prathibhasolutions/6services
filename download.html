@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloads - Telangana MeeSeva Federation</title>
+    
+    <!-- External Dependencies -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.15);
+            padding: 50px;
+            min-height: 90vh;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            color: #ff6b35;
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 3px 6px rgba(255, 107, 53, 0.3);
+            position: relative;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #ff6b35;
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 3px solid #fff5f2;
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.25);
+            border-color: #ff6b35;
+        }
+
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-card:hover:before {
+            left: 100%;
+        }
+
+        .service-icon {
+            width: 120px;
+            height: 120px;
+            background-color: #ff6b35;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(10deg);
+            background-color: #e55a2b;
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.5);
+        }
+
+        .service-icon i {
+            font-size: 3em;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon i {
+            transform: scale(1.1);
+        }
+
+        .service-title {
+            margin-bottom: 20px;
+        }
+
+        .service-title h4 {
+            color: #333;
+            font-size: 1.5em;
+            font-weight: 700;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .service-card:hover .service-title h4 {
+            color: #ff6b35;
+        }
+
+        .service-title a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .service-description {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .service-button {
+            display: inline-block;
+            background-color: #ff6b35;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        .service-button:hover {
+            background-color: #e55a2b;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Specific colors for different service types */
+        .drivers-card {
+            border-left: 6px solid #ff6b35;
+        }
+
+        .forms-card {
+            border-left: 6px solid #ff6b35;
+        }
+
+        .rules-card {
+            border-left: 6px solid #ff6b35;
+        }
+
+        /* Animation on page load */
+        .service-card {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.3s; }
+        .service-card:nth-child(3) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stats or additional info section */
+        .stats-section {
+            margin-top: 80px;
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #fff5f2 0%, #ffffff 100%);
+            border-radius: 20px;
+            border: 2px solid #fff5f2;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #ff6b35;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1em;
+            color: #666;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-container {
+                padding: 40px 30px;
+                margin: 10px;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 30px 20px;
+                margin: 10px 5px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .section-title h2 {
+                font-size: 2em;
+                letter-spacing: 2px;
+            }
+            
+            .service-card {
+                padding: 30px 20px;
+            }
+            
+            .service-icon {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .service-icon i {
+                font-size: 2.5em;
+            }
+            
+            .service-title h4 {
+                font-size: 1.3em;
+            }
+            
+            .stats-section {
+                margin-top: 60px;
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title h2 {
+                font-size: 1.8em;
+                letter-spacing: 1px;
+            }
+            
+            .service-icon {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .service-icon i {
+                font-size: 2em;
+            }
+            
+            .service-title h4 {
+                font-size: 1.2em;
+            }
+            
+            .service-description {
+                font-size: 15px;
+            }
+        }
+
+        /* Hover animations for better interaction */
+        .service-card {
+            cursor: pointer;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(255, 107, 53, 0.05);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 17px;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
+        }
+
+        /* Loading animation */
+        .loading {
+            opacity: 0;
+            animation: slideInFromBottom 1s ease forwards;
+        }
+
+        @keyframes slideInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container loading">
+        <div class="section-title">
+            <h2><strong>Downloads</strong></h2>
+        </div>
+
+        <div class="services-grid">
+            <!-- MeeSeva Drivers & Softwares -->
+            <div class="service-card drivers-card">
+                <div class="service-icon">
+                    <i class="fa fa-download"></i>
+                </div>
+                <div class="service-title">
+                    <h4><a href="/pages/downloads/driverDownloads.php">MeeSeva Drivers & Softwares</a></h4>
+                </div>
+                <div class="service-description">
+                    <p>Download Java Signer Components, Biometric & IRIS Device Drivers, Register & Renew RD Services, and other essential software tools for MeeSeva operations.</p>
+                </div>
+                <a href="/pages/downloads/driverDownloads.php" class="service-button">
+                    <i class="fa fa-download"></i>&nbsp;&nbsp;Download Now
+                </a>
+            </div>
+
+            <!-- Application Forms -->
+            <div class="service-card forms-card">
+                <div class="service-icon">
+                    <i class="ri-file-list-3-line"></i>
+                </div>
+                <div class="service-title">
+                    <h4><a href="/pages/downloads/applicationFormsDownloads.php">Application Forms</a></h4>
+                </div>
+                <div class="service-description">
+                    <p>Access and download all application forms for MeeSeva services including certificates, registrations, and various government service applications.</p>
+                </div>
+                <a href="/pages/downloads/applicationFormsDownloads.php" class="service-button">
+                    <i class="ri-file-list-3-line"></i>&nbsp;&nbsp;View Forms
+                </a>
+            </div>
+
+            <!-- G.O.s & Rules -->
+            <div class="service-card rules-card">
+                <div class="service-icon">
+                    <i class="fa fa-legal"></i>
+                </div>
+                <div class="service-title">
+                    <h4><a href="/pages/admin-panel/downloadGOs.php">G.O.s & Rules</a></h4>
+                </div>
+                <div class="service-description">
+                    <p>Download Government Orders (G.O.s) and official rules related to MeeSeva services, policies, and operational guidelines.</p>
+                </div>
+                <a href="/pages/admin-panel/downloadGOs.php" class="service-button">
+                    <i class="fa fa-legal"></i>&nbsp;&nbsp;Access Rules
+                </a>
+            </div>
+        </div>
+
+        <!-- Additional Stats Section -->
+        <div class="stats-section">
+            <h3 style="color: #ff6b35; font-size: 1.8em; font-weight: 600; margin-bottom: 20px;">
+                <i class="fa fa-chart-line"></i>&nbsp;&nbsp;Download Statistics
+            </h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Application Forms</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Software Tools</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Official G.O.s</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize page animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add loading class removal after a short delay
+            setTimeout(() => {
+                document.querySelector('.main-container').classList.remove('loading');
+            }, 100);
+
+            // Add click handlers for service cards
+            const serviceCards = document.querySelectorAll('.service-card');
+            serviceCards.forEach(card => {
+                const link = card.querySelector('.service-title a');
+                const button = card.querySelector('.service-button');
+                
+                card.addEventListener('click', function(e) {
+                    // Don't trigger if clicking on button or link directly
+                    if (e.target.closest('.service-button') || e.target.closest('.service-title a')) {
+                        return;
+                    }
+                    
+                    // Navigate to the service page
+                    if (link) {
+                        window.location.href = link.getAttribute('href');
+                    }
+                });
+
+                // Add hover effect enhancement
+                card.addEventListener('mouseenter', function() {
+                    card.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    card.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Add smooth scroll behavior for better UX
+            document.documentElement.style.scrollBehavior = 'smooth';
+
+            // Animate stats on scroll (if visible)
+            const observerOptions = {
+                threshold: 0.5,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statNumbers = entry.target.querySelectorAll('.stat-number');
+                        statNumbers.forEach(stat => {
+                            const finalValue = stat.textContent;
+                            const numericValue = parseInt(finalValue);
+                            
+                            if (!isNaN(numericValue)) {
+                                animateCounter(stat, 0, numericValue, 1500);
+                            }
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+        });
+
+        // Counter animation function
+        function animateCounter(element, start, end, duration) {
+            const startTime = performance.now();
+            const suffix = element.textContent.replace(/\d+/g, '');
+            
+            function updateCounter(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const current = Math.floor(start + (end - start) * easeOutQuart(progress));
+                element.textContent = current + suffix;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+            
+            requestAnimationFrame(updateCounter);
+        }
+
+        // Easing function
+        function easeOutQuart(t) {
+            return 1 - Math.pow(1 - t, 4);
+        }
+
+        // Add keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('keyboard-navigation');
+        });
+    </script>
+</body>
+</html>

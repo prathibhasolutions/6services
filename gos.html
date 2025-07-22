@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Telangana MeeSeva Federation</title>
+    
+    <!-- External Dependencies -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #fff5f2 0%, #ffffff 100%);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .login-card {
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.15);
+            overflow: hidden;
+            border: 2px solid #fff5f2;
+        }
+
+        .login-header {
+            background-color: #ff6b35;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .login-header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .login-header p {
+            font-size: 1.1em;
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+
+        .login-body {
+            padding: 50px;
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-title h2 {
+            color: #ff6b35;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .form-title p {
+            color: #666;
+            font-size: 1em;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-control {
+            border: 2px solid #fff5f2;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background-color: #fff;
+        }
+
+        .form-control:focus {
+            border-color: #ff6b35;
+            box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.25);
+            outline: none;
+        }
+
+        .form-control::placeholder {
+            color: #999;
+            font-weight: 400;
+        }
+
+        .btn-primary {
+            background-color: #ff6b35;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: #e55a2b;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 10px rgba(255, 107, 53, 0.4);
+        }
+
+        .text-danger {
+            color: #dc3545;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .forgot-password a {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .forgot-password a:hover {
+            color: #e55a2b;
+            text-decoration: underline;
+        }
+
+        .divider {
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .divider:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #eee;
+        }
+
+        .divider span {
+            background: #fff;
+            padding: 0 20px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Animation for form transitions */
+        .first_input_group, .second_input_group {
+            transition: all 0.5s ease;
+        }
+
+        .second_input_group {
+            display: none;
+        }
+
+        .login-icon {
+            background-color: #ff6b35;
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 2em;
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .login-header {
+                padding: 30px 20px;
+            }
+            
+            .login-header h1 {
+                font-size: 2em;
+            }
+            
+            .login-body {
+                padding: 30px 20px;
+            }
+            
+            .form-control {
+                padding: 12px 20px;
+                font-size: 15px;
+            }
+            
+            .btn-primary {
+                padding: 12px 30px;
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-header h1 {
+                font-size: 1.6em;
+                letter-spacing: 1px;
+            }
+            
+            .form-title h2 {
+                font-size: 1.5em;
+            }
+        }
+
+        /* Loading animation for buttons */
+        .btn-loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .btn-loading:after {
+            content: "";
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Success/Error message styling */
+        .alert {
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: none;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #dc3545;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1><i class="fa fa-shield"></i> TGMF</h1>
+                <p>Telangana MeeSeva Federation</p>
+            </div>
+            
+            <div class="login-body">
+                <div class="login-icon">
+                    <i class="fa fa-user-shield"></i>
+                </div>
+                
+                <div class="form-title">
+                    <h2>Admin Login</h2>
+                    <p>Please enter your credentials to access the admin panel</p>
+                </div>
+
+                <form method="post" action="userPanel.php" class="user">
+                    <!-- First Step: Username & Password -->
+                    <div class="first_input_group">
+                        <div class="form-group">
+                            <input type="text" 
+                                   class="form-control" 
+                                   name="username" 
+                                   id="username"
+                                   placeholder="Enter your username"
+                                   required>
+                            <span id="error_username" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="password" 
+                                   class="form-control" 
+                                   name="password" 
+                                   id="password" 
+                                   placeholder="Enter your password" 
+                                   autocomplete="off"
+                                   required>
+                            <span id="error_password" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="button" 
+                                    class="btn btn-primary" 
+                                    name="login" 
+                                    id="login" 
+                                    onclick="validateMemberCredentials()">
+                                <i class="fa fa-sign-in"></i>&nbsp;&nbsp;Login
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Second Step: OTP Verification -->
+                    <div class="second_input_group">
+                        <div class="alert alert-success">
+                            <i class="fa fa-check-circle"></i>
+                            <strong>OTP Sent!</strong> Please check your registered mobile number for the verification code.
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" 
+                                   class="form-control" 
+                                   name="otp" 
+                                   id="otp" 
+                                   placeholder="Enter 6-digit OTP"
+                                   maxlength="6"
+                                   pattern="[0-9]{6}">
+                            <span id="error_otp" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="button" 
+                                    class="btn btn-primary" 
+                                    name="submit_otp" 
+                                    id="submit_otp" 
+                                    onclick="validateOTP()">
+                                <i class="fa fa-key"></i>&nbsp;&nbsp;Verify OTP
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="divider">
+                        <span>Need Help?</span>
+                    </div>
+
+                    <div class="forgot-password">
+                        <a href="forgot-password.php">
+                            <i class="fa fa-question-circle"></i>&nbsp;Forgot Password?
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.second_input_group').hide();
+        });
+
+        function validateMemberCredentials() {
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var loginBtn = $('#login');
+            
+            // Reset errors
+            $('#error_username').text('');
+            $('#error_password').text('');
+            $('#username').removeClass('is-invalid');
+            $('#password').removeClass('is-invalid');
+            
+            // Basic validation
+            if (!username.trim()) {
+                $('#error_username').text('Username is required');
+                $('#username').addClass('is-invalid');
+                return;
+            }
+            
+            if (!password.trim()) {
+                $('#error_password').text('Password is required');
+                $('#password').addClass('is-invalid');
+                return;
+            }
+            
+            // Add loading state
+            loginBtn.addClass('btn-loading').prop('disabled', true);
+            
+            $.ajax({
+                url: "loginSendOTP.php",
+                type: "POST",
+                data: {username: username, password: password},
+                success: function(result) {
+                    loginBtn.removeClass('btn-loading').prop('disabled', false);
+                    
+                    if (result == 0) {
+                        $('#error_username').text('Invalid Username');
+                        $('#username').addClass('is-invalid');
+                    } else if (result == 1) {
+                        $('#error_password').text('Password is Wrong');
+                        $('#password').addClass('is-invalid');
+                    } else if (result == 2) {
+                        // Success - show OTP form
+                        $('.first_input_group').slideUp(500, function() {
+                            $('.second_input_group').slideDown(500);
+                        });
+                    }
+                },
+                error: function() {
+                    loginBtn.removeClass('btn-loading').prop('disabled', false);
+                    alert('Connection error. Please try again.');
+                }
+            });
+        }
+
+        function validateOTP() {
+            var otp = $('#otp').val();
+            var otpBtn = $('#submit_otp');
+            
+            // Reset error
+            $('#error_otp').text('');
+            $('#otp').removeClass('is-invalid');
+            
+            // Basic validation
+            if (!otp.trim()) {
+                $('#error_otp').text('OTP is required');
+                $('#otp').addClass('is-invalid');
+                return;
+            }
+            
+            if (otp.length !== 6) {
+                $('#error_otp').text('OTP must be 6 digits');
+                $('#otp').addClass('is-invalid');
+                return;
+            }
+            
+            // Add loading state
+            otpBtn.addClass('btn-loading').prop('disabled', true);
+            
+            $.ajax({
+                url: "loginCheckOTP.php",
+                type: "POST",
+                data: {otp: otp},
+                success: function(result) {
+                    otpBtn.removeClass('btn-loading').prop('disabled', false);
+                    
+                    if (result == 0) {
+                        $('#error_otp').text('Invalid OTP. Please try again.');
+                        $('#otp').addClass('is-invalid');
+                    } else if (result == 1) {
+                        // Success - redirect to admin page
+                        window.location = 'adminPage.php';
+                    } else if (result == 2) {
+                        // Success - redirect to district admin page
+                        window.location = 'distAdminPage.php';
+                    }
+                },
+                error: function() {
+                    otpBtn.removeClass('btn-loading').prop('disabled', false);
+                    alert('Connection error. Please try again.');
+                }
+            });
+        }
+
+        // Allow Enter key to trigger login/OTP submission
+        $(document).keypress(function(e) {
+            if (e.which == 13) {
+                if ($('.first_input_group').is(':visible')) {
+                    validateMemberCredentials();
+                } else if ($('.second_input_group').is(':visible')) {
+                    validateOTP();
+                }
+            }
+        });
+
+        // Auto-focus on OTP field when it becomes visible
+        $('.second_input_group').on('shown', function() {
+            $('#otp').focus();
+        });
+    </script>
+</body>
+</html>
