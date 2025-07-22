@@ -50,16 +50,15 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#services">Services</a></li>
+          <li><a href="index.html" class="active">Home</a></li>
           
-          <li><a href="#">Links</a></li>
+          
+          <li><a href="links.html">Links</a></li>
           <li class="dropdown"><a href="#"><span>Downloads</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               
-              <li><a href="#">Application Forms</a></li>
-              <li><a href="#">MeeSeva Drivers and Softwares</a></li>
-              <li><a href="#">Gos</a></li>
+              <li><a href="application.html">Application Forms</a></li>
+             
             </ul>
           </li>
           <li><a href="contact.html">Contact</a></li>
@@ -256,7 +255,129 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+ <!-- WhatsApp -->
+ <a href="https://wa.me/9063736616?text=Hello" target="_blank" style="position: fixed; right: 25px; bottom: 50px;">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" width="70">
+</a>
 
+<!-- Popup Form -->
+<div class="modal fade" id="emailPopup" tabindex="-1" aria-labelledby="emailPopupLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #ff6b35; color: white; border-top-left-radius: 13px; border-top-right-radius: 13px;">
+                <h5 class="modal-title fw-bold text-uppercase" id="emailPopupLabel">Subscribe to Updates</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="emailForm" action="YOUR_GOOGLE_APPS_SCRIPT_URL" method="POST">
+                    <div class="mb-3">
+                        <label for="emailInput" class="form-label">Enter your email</label>
+                        <input type="email" class="form-control" id="emailInput" name="email" placeholder="your.email@example.com" required>
+                    </div>
+                    <button type="submit" class="btn w-100 text-uppercase fw-bold" style="background-color: #ff6b35; border: none;">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CSS for Popup Styling -->
+<style>
+    .modal-content {
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        border: 2px solid #ff6b35;
+    }
+
+    .modal-title {
+        font-family: 'Open Sans', sans-serif;
+        letter-spacing: 1px;
+    }
+
+    .form-control {
+        border: 2px solid #ff6b35;
+        border-radius: 10px;
+        font-size: 14px;
+        padding: 10px;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #e55a2b;
+        box-shadow: 0 0 5px rgba(255, 107, 53, 0.5);
+    }
+
+    .modal-body .btn {
+        border-radius: 10px;
+        font-weight: 700;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .modal-body .btn:hover {
+        background-color: #e55a2b;
+        transform: translateY(-2px);
+    }
+
+    .btn-close {
+        filter: invert(1);
+    }
+</style>
+
+<!-- JavaScript for Popup and Form Submission -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if popup has been shown in this browser session
+        if (!localStorage.getItem('popupShown')) {
+            var emailPopup = new bootstrap.Modal(document.getElementById('emailPopup'), {
+                keyboard: true
+            });
+            emailPopup.show();
+
+            // Set flag in localStorage when popup is shown
+            localStorage.setItem('popupShown', 'true');
+        }
+
+        // Handle form submission
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var form = this;
+            var email = document.getElementById('emailInput').value;
+
+            // Basic email validation
+            if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Submit to Google Sheets
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result === 'success') {
+                    alert('Thank you! Your email has been submitted.');
+                    emailPopup.hide();
+                    form.reset();
+                    // Ensure popup doesn't show again
+                    localStorage.setItem('popupShown', 'true');
+                } else {
+                    alert('There was an error submitting your email. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting your email. Please try again.');
+            });
+        });
+
+        // Set popupShown flag when popup is closed
+        document.getElementById('emailPopup').addEventListener('hidden.bs.modal', function () {
+            localStorage.setItem('popupShown', 'true');
+        });
+    });
+</script>
 </body>
 
 </html>
