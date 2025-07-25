@@ -400,7 +400,7 @@ a:hover {
     text-decoration: none;
 }
 
- <style>
+
     .social-links a {
       transition: background-color 0.3s ease, transform 0.3s ease;
     }
@@ -413,7 +413,7 @@ a:hover {
         display: none;
       }
     }
-  </style>
+  
 
 /* Animations */
 @keyframes slideDown {
