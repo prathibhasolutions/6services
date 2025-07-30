@@ -285,7 +285,7 @@
                         <label for="emailInput" class="form-label">Enter your email</label>
                         <input type="email" class="form-control" id="emailInput" name="email" placeholder="your.email@example.com" required>
                     </div>
-                    <button type="submit" class="btn w-100 text-uppercase fw-bold" style="background-color: #ff6b35; border: none;">Submit</button>
+                    <button type="submit" id="submitBtn" class="btn w-100 text-uppercase fw-bold" style="background-color: #ff6b35; border: none;">Submit</button>
                 </form>
             </div>
         </div>
@@ -347,7 +347,7 @@
             // Set flag in localStorage when popup is shown
             localStorage.setItem('popupShown', 'true');
         }
-
+        var submitBtn = document.getElementById('submitBtn'); // Get submit button
         // Handle form submission
         document.getElementById('emailForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -359,7 +359,9 @@
                 alert('Please enter a valid email address.');
                 return;
             }
-
+             submitBtn.disabled = true;
+        var originalBtnText = submitBtn.textContent;
+        submitBtn.textContent = 'Submitting...';
             // Submit to Google Sheets
             fetch(form.action, {
                 method: 'POST',
@@ -380,7 +382,12 @@
             .catch(error => {
                 console.error('Error:', error);
                 alert('There was an error submitting your email. Please try again.');
-            });
+            })
+            .finally(() => {
+            // Re-enable button and restore text no matter what
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+        });
         });
 
         // Set popupShown flag when popup is closed
